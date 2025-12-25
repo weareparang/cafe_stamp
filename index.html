@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>카페 도장 쿠폰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 로그인 페이지 -->
+    <div id="login-page" class="page active">
+        <div class="container">
+            <div class="logo-section">
+                <div class="logo-icon"></div>
+                <h1>STAMP COUPON</h1>
+                <p class="subtitle">도장을 모아 무료 음료를 받으세요</p>
+            </div>
+
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="이름을 입력해주세요" autocomplete="name">
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">휴대폰 번호</label>
+                    <input type="tel" id="phone" placeholder="010-0000-0000" autocomplete="tel">
+                </div>
+
+                <button id="login-btn" class="btn-primary">적립 확인하기</button>
+            </div>
+
+            <p class="info-text">* 처음 방문이시면 자동으로 등록됩니다</p>
+        </div>
+    </div>
+
+    <!-- 메인 페이지 (로그인 후) -->
+    <div id="main-page" class="page">
+        <div class="container">
+            <div class="header">
+                <h2>안녕하세요, <span id="user-name">고객</span>님!</h2>
+                <button id="logout-btn" class="btn-small">로그아웃</button>
+            </div>
+
+            <!-- 도장 현황 -->
+            <div class="stamp-section">
+                <h3>나의 도장</h3>
+                <div class="stamp-grid" id="stamp-grid">
+                    <!-- JavaScript로 도장 10개 생성 -->
+                </div>
+                <p class="stamp-count"><span id="current-stamps">0</span> / 10</p>
+            </div>
+
+            <!-- 쿠폰 현황 -->
+            <div class="coupon-section">
+                <div class="coupon-info">
+                    <span class="coupon-label">보유 쿠폰</span>
+                    <span class="coupon-count" id="coupon-count">0</span>
+                    <span class="coupon-unit">장</span>
+                </div>
+            </div>
+
+            <!-- 버튼 영역 -->
+            <div class="action-buttons">
+                <button id="use-coupon-btn" class="btn-secondary">쿠폰 사용</button>
+                <button id="add-stamp-btn" class="btn-primary">도장 찍기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 도장 찍기 모달 -->
+    <div id="stamp-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>도장 찍기</h3>
+                <button class="close-btn" data-modal="stamp-modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p class="modal-label">찍을 도장 수</p>
+                <div class="quantity-selector">
+                    <button class="qty-btn minus" data-target="stamp-qty">-</button>
+                    <span class="qty-value" id="stamp-qty">1</span>
+                    <button class="qty-btn plus" data-target="stamp-qty">+</button>
+                </div>
+
+                <div class="input-group">
+                    <label for="staff-code-stamp">직원 인증 코드 (4자리)</label>
+                    <input type="password" id="staff-code-stamp" maxlength="4" placeholder="****" inputmode="numeric">
+                </div>
+
+                <button id="confirm-stamp-btn" class="btn-primary">도장 찍기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 쿠폰 사용 모달 -->
+    <div id="coupon-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>쿠폰 사용</h3>
+                <button class="close-btn" data-modal="coupon-modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p class="modal-label">사용할 쿠폰 수</p>
+                <div class="quantity-selector">
+                    <button class="qty-btn minus" data-target="coupon-qty">-</button>
+                    <span class="qty-value" id="coupon-qty">1</span>
+                    <button class="qty-btn plus" data-target="coupon-qty">+</button>
+                </div>
+
+                <div class="input-group">
+                    <label for="staff-code-coupon">직원 인증 코드 (4자리)</label>
+                    <input type="password" id="staff-code-coupon" maxlength="4" placeholder="****" inputmode="numeric">
+                </div>
+
+                <button id="confirm-coupon-btn" class="btn-secondary">쿠폰 사용</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 알림 메시지 -->
+    <div id="toast" class="toast"></div>
+
+    <!-- 로딩 오버레이 -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
